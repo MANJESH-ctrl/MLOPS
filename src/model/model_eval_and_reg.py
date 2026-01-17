@@ -12,21 +12,21 @@ from src.utility.utils import load_data
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 import dagshub
 
-# Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+#Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "MANJESH-ctrl"
-# repo_name = "MLOPS"
+dagshub_url = "https://dagshub.com"
+repo_owner = "MANJESH-ctrl"
+repo_name = "MLOPS"
 
-# # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
-dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
 
 
 def load_model(file_path: str):
