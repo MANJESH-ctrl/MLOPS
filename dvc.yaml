@@ -37,18 +37,11 @@ stages:
     outs:
     - models/model.pkl
 
-  model_evaluation:
-    cmd: python src/model/model_evaluation.py
+  model_eval_and_reg:
+    cmd: python src/model/model_eval_and_reg.py
     deps:
     - models/model.pkl
-    - src/model/model_evaluation.py
+    - src/model/model_eval_and_reg.py
     metrics:
     - reports/metrics.json
-    outs:
-    - reports/experiment_info.json  # Add the model_info.json file as an output
-
-  # model_registration:
-  #   cmd: python src/model/register_model.py
-  #   deps:
-  #   - reports/experiment_info.json
-  #   - src/model/register_model.py
+      
