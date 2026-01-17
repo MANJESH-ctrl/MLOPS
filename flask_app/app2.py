@@ -43,7 +43,7 @@ def setup_mlflow():
             
         else:
             # LOCAL: Direct URL
-            tracking_uri = 'https://dagshub.com/MANJESH-ctrl/MLOPS-fullstack.mlflow'
+            tracking_uri = 'https://dagshub.com/MANJESH-ctrl/MLOPS.mlflow'
             mlflow.set_tracking_uri(tracking_uri)
             
         print(f"✅ MLflow tracking URI: {tracking_uri}")
@@ -90,34 +90,21 @@ print("🔄 Loading model and preprocessing objects...")
 setup_mlflow()
 dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
 # Load model from MLflow Model Registry
+
 model_name = "my_model"
+def get_latest_model_version(model_name):
+    client = mlflow.MlflowClient()
+    latest_version = client.get_latest_versions(model_name, stages=["Production"])
+    if not latest_version:
+        latest_version = client.get_latest_versions(model_name, stages=["None"])
+    return latest_version[0].version if latest_version else None
 
-# model_stage = "Staging"  # or "Production" if you've promoted it
+model_version = get_latest_model_version(model_name)
+model_uri = f'models:/{model_name}/{model_version}'
+print(f"Fetching model from: {model_uri}")
+model = mlflow.pyfunc.load_model(model_uri)
 
-def load_production_model():
-    """Load the latest model from MLflow Model Registry."""
-    try:
-        # Try to load from model registry
-        model_uri = f"models:/{model_name}@latest"
-        print(f"🔍 Loading model from: {model_uri}")
-        model = mlflow.pyfunc.load_model(model_uri)
-        print(f"✅ Model loaded from MLflow Registry")
-        return model
-    except Exception as e:
-        print(f"⚠️ Could not load from MLflow: {e}")
-        print("🔄 Falling back to local model file...")
-        try:
-            # Fallback to local pickle file
-            with open('models/model.pkl', 'rb') as f:
-                model = pickle.load(f)
-            print("✅ Model loaded from local file")
-            return model
-        except Exception as e2:
-            print(f"❌ Could not load model: {e2}")
-            return None
 
-# Load the model
-model = load_production_model()
 
 # Load preprocessing objects
 try:

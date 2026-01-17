@@ -13,19 +13,20 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_a
 import dagshub
 
 # Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("CAPSTONE_TEST")
-if not dagshub_token:
-    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
-os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-dagshub_url = "https://dagshub.com"
-repo_owner = "MANJESH-ctrl"
-repo_name = "MLOPS"
+# dagshub_url = "https://dagshub.com"
+# repo_owner = "MANJESH-ctrl"
+# repo_name = "MLOPS"
 
-# Set up MLflow tracking URI
-mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# # Set up MLflow tracking URI
+# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
 
 
 def load_model(file_path: str):
@@ -121,8 +122,16 @@ def main():
                     mlflow.log_param(param_name, param_value)
 
             # Register the model as "latest" version
-            client = MlflowClient()
-            client.set_registered_model_alias("my_model", "latest")
+            # client = MlflowClient()
+            # latest = client.get_latest_versions("my_model")
+            # # pick numerically highest version
+            # latest_version = max(int(v.version) for v in latest)
+            # client.set_registered_model_alias("my_model", "latest", {latest_version})
+            # client.transition_model_version_stage(
+            #     name="my_model",
+            #     version= model.version,
+            #     stage="Staging"
+            # )
 
         except Exception as e:
             logging.error('Failed to complete the model evaluation process: %s', e)
