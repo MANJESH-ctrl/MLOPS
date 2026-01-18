@@ -48,7 +48,6 @@ jobs:
 
       - name: Start Flask API (background)
         env:
-          # Provide secrets your app needs (example)
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
           # optional: expose MLflow/DAGSHUB secrets if needed
           # MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}

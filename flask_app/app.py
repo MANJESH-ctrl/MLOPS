@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 # ============================================================================
 
 # Choose mode: 'local' or 'production'
-MODE = 'local'
+MODE = 'production'
 
 def setup_mlflow():
     """Setup MLflow tracking based on mode."""
