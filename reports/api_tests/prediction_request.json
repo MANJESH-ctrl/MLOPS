@@ -1,0 +1,12 @@
+{
+    "Age": 0,
+    "Gender": 0,
+    "Previously_Insured": 0,
+    "Vehicle_Damage": 1,
+    "Policy_Sales_Channel": 154,
+    "sentiment": 0,
+    "Vehicle_Age_< 1 Year": 0,
+    "Vehicle_Age_> 2 Years": 0,
+    "Age_Group_Middle": 1,
+    "Age_Premium_Ratio": 67
+}
