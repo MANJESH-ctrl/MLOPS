@@ -47,11 +47,8 @@ jobs:
           python -m unittest tests/test_model_validation.py
 
       
-      - name: Run Flask app test
-        if: success()
+      - name: Run Flask tests
         env:
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
           python -m unittest tests/final_app_test.py
-
-      
