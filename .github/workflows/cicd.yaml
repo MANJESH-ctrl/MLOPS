@@ -57,5 +57,5 @@ jobs:
         if: success()
         env:
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
-        run: python scripts/promote_model.py
+        run: python Scripts/promote_model.py
     
