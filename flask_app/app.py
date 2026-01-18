@@ -56,8 +56,15 @@ def setup_mlflow():
 # ============================================================================
 # Initialize Flask App
 # ============================================================================
+def create_app(testing=False):
+    app = Flask(__name__)
 
-app = Flask(__name__)
+    if testing:
+        app.config["TESTING"] = True
+
+    return app
+
+app = create_app()
 
 # Optional: Prometheus metrics
 registry = CollectorRegistry()
