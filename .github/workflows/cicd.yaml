@@ -46,16 +46,14 @@ jobs:
         run: |
           python -m unittest tests/test_model_validation.py
 
+      - name: Promote model to production
+        if: success()
+        env:
+          CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
+        run: python Scripts/promote_model.py
       
       - name: Run Flask tests
         env:
           CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
         run: |
           python -m unittest tests/test_flask_app.py
-
-      - name: Promote model to production
-        if: success()
-        env:
-          CAPSTONE_TEST: ${{ secrets.CAPSTONE_TEST }}
-        run: python Scripts/promote_model.py
-    
