@@ -87,3 +87,6 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+eksctl.exe
+eksctl_Windows_amd64.zip
