@@ -55,5 +55,5 @@ class FlaskAppTests(unittest.TestCase):
             "error" in data or "prediction" in data,
             "Response must contain either error or prediction"
         )
-        # self.assertIn(response.status_code, [200,400, 422, 500])
+        
 

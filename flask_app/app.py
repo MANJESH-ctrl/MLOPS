@@ -40,11 +40,13 @@ def setup_mlflow():
 
             tracking_uri = f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow'
             mlflow.set_tracking_uri(tracking_uri)
-            
+
         else:
             # LOCAL: Direct URL
-            tracking_uri = 'https://dagshub.com/MANJESH-ctrl/MLOPS.mlflow'
-            mlflow.set_tracking_uri(tracking_uri)
+            # tracking_uri = 'https://dagshub.com/MANJESH-ctrl/MLOPS.mlflow'
+            # mlflow.set_tracking_uri(tracking_uri)
+            dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
+
             
         print(f"✅ MLflow tracking URI: {tracking_uri}")
         return True
@@ -95,7 +97,6 @@ print("🔄 Loading model and preprocessing objects...")
 
 # Setup MLflow first
 setup_mlflow()
-# dagshub.init(repo_owner='MANJESH-ctrl', repo_name='MLOPS', mlflow=True)
 
 # Load model from MLflow Model Registry
 model_name = "my_model"

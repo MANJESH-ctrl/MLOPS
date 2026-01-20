@@ -241,6 +241,13 @@ def main():
         # Load parameters
         params = load_params('params.yaml')
         max_features = params['feature_engineering']['max_features']
+
+
+
+
+
+
+
         create_interaction = params['feature_engineering']['create_interaction']
         
 
